@@ -81,7 +81,6 @@ The program validates input and displays error messages for:
 - Incorrect number of characters (must equal n²)
 - Improperly formatted input
 
-**Example error:**
 ![Input Validation](Images/image-4.png)
 
 ## Algorithm Details
