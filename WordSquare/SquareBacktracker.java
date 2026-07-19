@@ -1,7 +1,6 @@
 package WordSquare;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,18 +30,18 @@ public class SquareBacktracker {
             if (!matchesPattern(word, pattern)) {
                 continue; // Skip words that don't match the current pattern
             }
-            // Check if the word can be formed with the available characters
-            Map<Character, Integer> neededChars = newLettersNeeded(word, pattern);
-            if (!pool.canConsume(neededChars)) {
+            // Count the letters in the current word to check if they can be consumed from the pool
+            Map<Character, Integer> wordLetters = LetterGroup.countLetters(word.toCharArray());// Count the letters in the current word
+            if (!pool.canConsume(wordLetters)) {// Check if the pool has enough letters to consume the current word
                 continue; // Skip words that require more characters than available
             }
-            pool.consume(neededChars); // Consume the needed characters
+            pool.consume(wordLetters); // Consume the full word's letters
             square[row] = word; // Place the word in the current row
             // Recursively attempt to fill the next row
             if (backtrack(row+1, n, square, pool, candidateWords)) {
                 return true; // Continue to the next row
             }
-            pool.release(neededChars); // Release the consumed characters for backtracking
+            pool.release(wordLetters); // Release the consumed characters for backtracking
             square[row] = null; // Backtrack: Remove the word from the current row
         }
         return false; // No valid word found for the current row
@@ -69,18 +68,5 @@ public class SquareBacktracker {
             }
         }
         return true; // Word matches the pattern
-    }
-    // Returns positions not already fixed by the pattern that need to be filled with letters from the pool
-    private static Map<Character, Integer> newLettersNeeded(String word, char[] pattern) {
-        Map<Character, Integer> neededChars = new HashMap<>();
-        // Count the characters in the word that correspond to '.' in the pattern
-        for (int i = 0; i < pattern.length; i++){
-            if (pattern[i] == '.'){
-                // Increment the count for the character needed from the available characters
-                neededChars.merge(word.charAt(i), 1, Integer::sum);
-            }
-        }
-        // Return the map of needed characters and their counts
-        return neededChars;
     }
 }
