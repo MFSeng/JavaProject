@@ -69,7 +69,6 @@ If no valid word square can be created with the given characters, the program ou
 
 ![Failed Output](Images/image-1.png)
 
-
 ## Example Usage
 
 ![Full Example](Images/image-2.png)
@@ -81,7 +80,7 @@ The program validates input and displays error messages for:
 - Incorrect number of characters (must equal n²)
 - Improperly formatted input
 
-![Input Validation](Images/image-4.png)
+![Input Validation](Images/image-3.png)
 
 ## Algorithm Details
 
