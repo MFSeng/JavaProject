@@ -72,8 +72,6 @@ If no valid word square can be created with the given characters, the program ou
 
 ## Example Usage
 
-**Session Example:**
-
 ![Full Example](Images/image-2.png)
 
 ## Error Handling
